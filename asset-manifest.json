@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/happy-valentines-3/static/css/main.9ccec91d.css",
+    "main.js": "/happy-valentines-3/static/js/main.ef302230.js",
+    "index.html": "/happy-valentines-3/index.html",
+    "main.9ccec91d.css.map": "/happy-valentines-3/static/css/main.9ccec91d.css.map",
+    "main.ef302230.js.map": "/happy-valentines-3/static/js/main.ef302230.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9ccec91d.css",
+    "static/js/main.ef302230.js"
+  ]
+}
