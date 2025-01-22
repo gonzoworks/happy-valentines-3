@@ -1,0 +1,217 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full-Screen Setup */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Envelope Container */
+.envelope-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Stack envelope and button vertically */
+  justify-content: center; /* Center envelope and button vertically */
+  align-items: center; /* Center everything horizontally */
+  background-color: #ffccff; /* Light pink background */
+}
+
+/* Envelope */
+.envelope {
+  position: relative; /* Parent container for the flap */
+  width: 300px;
+  height: 200px;
+  background-color: #ffffff; /* Envelope background color */
+  border: 2px solid #ff4d6d; /* Outline for the envelope */
+  border-radius: 5px;
+  overflow: hidden; /* Prevent the flap from spilling out */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Flap */
+.flap {
+  position: absolute;
+  top: 0; /* Align with the top of the envelope */
+  left: 0;
+  width: 100%; /* Match the envelope's width */
+  height: 100%; /* Fully cover the envelope when closed */
+  background-color: #ffe5e5; /* Light pink color for the flap */
+  clip-path: polygon(0 0, 50% 100%, 100% 0); /* Create the triangular shape */
+  transform-origin: top center; /* Pivot point for rotation */
+  transform: rotateX(0deg); /* Default closed position */
+  transition: transform 1s ease-in-out; /* Smooth opening animation */
+  z-index: 2; /* Ensure flap appears above the envelope */
+}
+
+/* Flap Open State */
+.flap.open {
+  transform: rotateX(-180deg); /* Flip the flap upwards */
+}
+
+/* Open Button */
+.openButton {
+  margin-top: 20px; /* Space below the envelope */
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: 'Gochi Hand', sans-serif;
+  color: #fff;
+  background-color: #ff4d6d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.openButton:hover {
+  background-color: #ff1f4d;
+}
+
+/* Loading Screen */
+.loading-screen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: #ff80ff; /* Light pink background */
+}
+
+.loading-gif {
+  width: 150px; /* Adjust size of the loading GIF */
+  height: auto;
+  animation: fadeIn 1.5s infinite alternate; /* Simple fade-in animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* White Flash Transition */
+.white-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  animation: flashFade 0.8s ease-in-out;
+  z-index: 100; /* Ensure it appears above everything else */
+}
+
+@keyframes flashFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* Shimmering Background */
+.shimmering-background {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(45deg, #ff4dff, #ffffff, #ff99ff);
+  background-size: 300% 300%;
+  animation: shimmer 4s infinite ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* GIF Styling */
+.gif {
+  max-width: 100%;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Heading */
+h1 {
+  font-size: 3rem;
+  font-family: 'Gochi Hand', sans-serif;
+  color: #ff4d6d;
+  animation: heartbeat 1.5s infinite;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.yesButton, .noButton {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  font-family: 'Gochi Hand', sans-serif;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.yesButton {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+.yesButton:hover {
+  background-color: #ff1f4d;
+  transform: scale(1.1);
+}
+
+.noButton {
+  background-color: #999;
+  color: black;
+}
+
+.noButton:hover {
+  transform: translate(
+    calc(20px - 40px * (Math.random() - 0.5)),
+    calc(10px - 20px * (Math.random() - 0.5))
+  );
+  transition: transform 0.2s ease;
+}
