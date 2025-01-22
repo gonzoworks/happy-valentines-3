@@ -8,13 +8,13 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [titleMessage, setTitleMessage] = useState("Will You Be My Valentine?");
-  const [gifSrc, setGifSrc] = useState("/valentine.gif");
+  const [gifSrc, setGifSrc] = useState(`${process.env.PUBLIC_URL}/valentine.gif`);
   const [noButtonStyle, setNoButtonStyle] = useState({});
   const [hoverCount, setHoverCount] = useState(0);
 
   useEffect(() => {
     // Initialize the background music
-    backgroundMusic.current = new Audio("/sounds/background.mp3");
+    backgroundMusic.current = new Audio(`${process.env.PUBLIC_URL}/sounds/background.mp3`);
     backgroundMusic.current.loop = true;
     backgroundMusic.current.volume = 0.2;
 
@@ -38,32 +38,32 @@ function App() {
 
   const handleOpenEnvelope = () => {
     const flapElement = document.querySelector(".flap");
-    const openSound = new Audio("/sounds/open.wav"); // Envelope opening sound
+    const openSound = new Audio(`${process.env.PUBLIC_URL}/sounds/open.wav`);
     openSound.play();
 
     if (flapElement) {
-      flapElement.classList.add("open"); // Open the flap
+      flapElement.classList.add("open");
       setTimeout(() => {
-        setIsEnvelopeOpen(true); // Show loading screen
+        setIsEnvelopeOpen(true);
         setIsLoading(true);
         setTimeout(() => {
-          setIsLoading(false); // Show main content
-          setIsTransitioning(true); // Trigger white flash
-          setTimeout(() => setIsTransitioning(false), 800); // End white flash
-        }, 3000); // 3-second loading delay
-      }, 1000); // Flap animation duration
+          setIsLoading(false);
+          setIsTransitioning(true);
+          setTimeout(() => setIsTransitioning(false), 800);
+        }, 3000);
+      }, 1000);
     }
   };
 
   const handleYesClick = () => {
-    const clickSound = new Audio("/sounds/congrats.mp3");
+    const clickSound = new Audio(`${process.env.PUBLIC_URL}/sounds/congrats.mp3`);
     clickSound.play();
     setTitleMessage("You're mine forever now c:<");
-    setGifSrc("/yesvalentine.gif");
+    setGifSrc(`${process.env.PUBLIC_URL}/yesvalentine.gif`);
   };
 
   const handleNoClick = () => {
-    const clickSound = new Audio("/sounds/click.mp3");
+    const clickSound = new Audio(`${process.env.PUBLIC_URL}/sounds/click.mp3`);
     clickSound.play();
     setTitleMessage("Too bad :p");
     setNoButtonStyle({
@@ -74,16 +74,16 @@ function App() {
     setTimeout(() => {
       setNoButtonStyle({});
       setTitleMessage("Will You Be My Valentine?");
-      setGifSrc("/valentine.gif");
+      setGifSrc(`${process.env.PUBLIC_URL}/valentine.gif`);
       setHoverCount(0);
     }, 10000);
   };
 
   const handleNoHover = (e) => {
     const button = e.target;
-    const hoverSound = new Audio("/sounds/hover.mp3"); // Optional hover sound
+    const hoverSound = new Audio(`${process.env.PUBLIC_URL}/sounds/hover.mp3`);
     hoverSound.play();
-    setGifSrc("/novalentine.gif");
+    setGifSrc(`${process.env.PUBLIC_URL}/novalentine.gif`);
 
     const randomX = Math.random() * 400 - 200;
     const randomY = Math.random() * 200 - 100;
@@ -94,7 +94,7 @@ function App() {
     button.style.transform += ` scale(${newScale})`;
   };
 
-  const handleNoLeave = () => setGifSrc("/valentine.gif");
+  const handleNoLeave = () => setGifSrc(`${process.env.PUBLIC_URL}/valentine.gif`);
 
   return (
     <div className="App">
@@ -107,14 +107,18 @@ function App() {
           <button
             className="openButton"
             onClick={handleOpenEnvelope}
-            onMouseEnter={handleHoverOpenButton} // Trigger background music on hover
+            onMouseEnter={handleHoverOpenButton}
           >
             Open Me
           </button>
         </div>
       ) : isLoading ? (
         <div className="loading-screen">
-          <img src="/hearts-loading.gif" alt="Loading..." className="loading-gif" />
+          <img
+            src={`${process.env.PUBLIC_URL}/hearts-loading.gif`}
+            alt="Loading..."
+            className="loading-gif"
+          />
         </div>
       ) : (
         <div className="shimmering-background">
