@@ -1,7 +1,8 @@
- {
+{
   "name": "valentine-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gonzoworks.github.io/happy-valentines-3",
   "dependencies": {
     "cra-template": "1.2.0",
     "react": "18.2.0",
@@ -33,5 +34,6 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
